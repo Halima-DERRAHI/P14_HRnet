@@ -16,4 +16,4 @@ function RouterIndex () {
     )
 }
 
-export default RouterIndex
+export default RouterIndex;
