@@ -1,3 +1,50 @@
+.header {
+    display: flex;
+    background-color: #5A6F08;
+    padding: 15px;
+}
+
 .logo {
     width: 100px;
+    height: 100px;
+}
+
+.logoTitle {
+    font-size: 32px;
+    color: white;
+    margin: 0;
+}
+
+.title {
+    font-size: 60px;
+    color: white;
+    margin: auto;
+}
+
+.fa-solid {
+    font-size: 30px;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linksContainer {
+    color: white;
+    margin: auto 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.icon {
+    margin-right: 15px;
 }

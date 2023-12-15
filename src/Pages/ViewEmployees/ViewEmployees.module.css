@@ -1,0 +1,30 @@
+.tableContainer {
+    width: 80%; 
+    margin: 50px auto;
+}
+  
+.DataTable {
+    width: 100%; 
+    border: 1px solid #ccc;
+}
+
+.DataTable .rdt_TableHeadRow {
+    background-color: #cdd8a2;
+}  
+
+.inputContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.inputSearch {
+    width: 300px; 
+    padding: 8px; 
+    margin: 20px 0;
+}
+  
+.searchIcon {
+    position: absolute;
+    top: 30px;
+    right: 7px;
+}

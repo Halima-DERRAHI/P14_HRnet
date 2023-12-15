@@ -1,0 +1,112 @@
+[
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "startDate": "2022-10-15",
+      "department": "Marketing",
+      "dateOfBirth": "1985-08-20",
+      "street": "456 Oak St",
+      "city": "Otherville",
+      "state": "NY",
+      "zipCode": "54321"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "startDate": "2023-01-01",
+      "department": "HR",
+      "dateOfBirth": "1990-05-15",
+      "street": "123 Main St",
+      "city": "Anytown",
+      "state": "CA",
+      "zipCode": "12345"
+    },
+    {
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "startDate": "2021-12-05",
+      "department": "Sales",
+      "dateOfBirth": "1988-03-10",
+      "street": "789 Elm St",
+      "city": "Sometown",
+      "state": "TX",
+      "zipCode": "67890"
+    },
+    {
+      "firstName": "Robert",
+      "lastName": "Williams",
+      "startDate": "2023-02-20",
+      "department": "Finance",
+      "dateOfBirth": "1979-11-25",
+      "street": "567 Pine St",
+      "city": "Othercity",
+      "state": "FL",
+      "zipCode": "98765"
+    },
+    {
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "startDate": "2022-05-10",
+      "department": "Operations",
+      "dateOfBirth": "1995-07-18",
+      "street": "890 Cedar St",
+      "city": "Newville",
+      "state": "IL",
+      "zipCode": "23456"
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Davis",
+      "startDate": "2023-06-30",
+      "department": "Engineering",
+      "dateOfBirth": "1983-09-28",
+      "street": "234 Birch St",
+      "city": "Townsville",
+      "state": "WA",
+      "zipCode": "34567"
+    },
+    {
+      "firstName": "Sophia",
+      "lastName": "Miller",
+      "startDate": "2022-08-12",
+      "department": "Research",
+      "dateOfBirth": "1976-12-04",
+      "street": "678 Maple St",
+      "city": "Villageville",
+      "state": "OR",
+      "zipCode": "45678"
+    },
+    {
+      "firstName": "William",
+      "lastName": "Garcia",
+      "startDate": "2023-03-25",
+      "department": "Product Management",
+      "dateOfBirth": "1989-04-30",
+      "street": "345 Pine St",
+      "city": "Citytown",
+      "state": "CO",
+      "zipCode": "56789"
+    },
+    {
+      "firstName": "Olivia",
+      "lastName": "Martinez",
+      "startDate": "2022-11-08",
+      "department": "Customer Success",
+      "dateOfBirth": "1992-01-12",
+      "street": "123 Cedar St",
+      "city": "Metropolis",
+      "state": "GA",
+      "zipCode": "67890"
+    },
+    {
+      "firstName": "James",
+      "lastName": "Hernandez",
+      "startDate": "2023-07-17",
+      "department": "IT",
+      "dateOfBirth": "1981-06-22",
+      "street": "890 Oak St",
+      "city": "Techcity",
+      "state": "MI",
+      "zipCode": "78901"
+    }
+]  
