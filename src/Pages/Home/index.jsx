@@ -8,7 +8,7 @@ function Home() {
 
   const dispatch = useDispatch();
 
-  const [employeeData, setEmployeeData] = useState({
+  const initialEmployeeData = {
     firstName: '',
     lastName: '',
     dateOfBirth: '',
@@ -17,16 +17,23 @@ function Home() {
       street: '',
       city: '',
       state: '',
-      zipCode: ''
+      zipCode: '',
     },
-    department: ''
-  });
+    department: '',
+  };
+  
+  const [employeeData, setEmployeeData] = useState(initialEmployeeData);
+  const [errors, setErrors] = useState(initialEmployeeData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmployeeData({
       ...employeeData,
       [name]: value
+    });
+    setErrors({
+      ...errors,
+      [name]: value ? '' : `${name} is required`,
     });
   };
 
@@ -39,24 +46,48 @@ function Home() {
         [name]: value
       }
     });
+    setErrors({
+      ...errors,
+      address: {
+        ...errors.address,
+        [name]: value ? '' : `${name} is required`,
+      },
+    });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    for (const field in employeeData) {
+      if (!employeeData[field]) {
+        newErrors[field] = `${field} is required`;
+        isValid = false;
+      }
+    }
+
+    for (const field in employeeData.address) {
+      if (!employeeData.address[field]) {
+        newErrors.address = {
+          ...newErrors.address,
+          [field]: `${field} is required`,
+        };
+        isValid = false;
+      }
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addEmployeeData(employeeData));
-    setEmployeeData({
-      firstName: '',
-      lastName: '',
-      dateOfBirth: '',
-      startDate: '',
-      address: {
-        street: '',
-        city: '',
-        state: '',
-        zipCode: ''
-      },
-      department: ''
-    });
+
+    if (validateForm()) {
+      dispatch(addEmployeeData(employeeData));
+      setEmployeeData(initialEmployeeData);
+      setErrors(initialEmployeeData);
+    }
   };
 
   return (
@@ -70,6 +101,8 @@ function Home() {
           value={employeeData.firstName}
           onChange={handleChange}
         />
+        {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
+
         <label>Last Name:</label>
         <input
           type="text"
@@ -77,6 +110,8 @@ function Home() {
           value={employeeData.lastName}
           onChange={handleChange}
         />
+        {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
+
         <label>Date of Birth:</label>
         <input
           type="date"
@@ -84,6 +119,8 @@ function Home() {
           value={employeeData.dateOfBirth}
           onChange={handleChange}
         />
+        {errors.dateOfBirth && <span className={styles.error}>{errors.dateOfBirth}</span>}
+
         <label>Start Date:</label>
         <input
           type="date"
@@ -91,6 +128,8 @@ function Home() {
           value={employeeData.startDate}
           onChange={handleChange}
         />
+        {errors.startDate && <span className={styles.error}>{errors.startDate}</span>}
+
         <fieldset className={styles.addressContainer}>
           <legend>Address</legend>
           <div>
@@ -101,6 +140,8 @@ function Home() {
               value={employeeData.address.street}
               onChange={handleAddressChange}
             />
+            {errors.address.street && <span className={styles.error}>{errors.address.street}</span>}
+
             <label>City:</label>
             <input
               type="text"
@@ -108,6 +149,8 @@ function Home() {
               value={employeeData.address.city}
               onChange={handleAddressChange}
             />
+            {errors.address.city && <span className={styles.error}>{errors.address.city}</span>}
+
             <label>State:</label>
             <select
               name="state"
@@ -122,6 +165,8 @@ function Home() {
                 </option>
               ))}
             </select>
+            {errors.address.state && <span className={styles.error}>{errors.address.state}</span>}
+
             <label>Zip Code:</label>
             <input
               type="text"
@@ -129,6 +174,8 @@ function Home() {
               value={employeeData.address.zipCode}
               onChange={handleAddressChange}
             />
+            {errors.address.zipCode && <span className={styles.error}>{errors.address.zipCode}</span>}
+
           </div>
         </fieldset>
         <label>Department:</label>
@@ -139,12 +186,15 @@ function Home() {
         value={employeeData.department}
         onChange={handleChange}
         >
+          <option value="">Select departement</option>
           <option>Sales</option>
           <option>Marketing</option>
           <option>Engineering</option>
           <option>Human Resources</option>
           <option>Legal</option>
         </select>
+        {errors.department && <span className={styles.error}>{errors.department}</span>}
+
         <button type="submit">Save</button>
       </form>
     </div>

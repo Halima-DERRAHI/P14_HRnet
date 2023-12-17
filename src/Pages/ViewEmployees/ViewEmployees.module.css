@@ -1,5 +1,5 @@
 .tableContainer {
-    width: 80%; 
+    width: 95%; 
     margin: 50px auto;
 }
   
@@ -7,10 +7,6 @@
     width: 100%; 
     border: 1px solid #ccc;
 }
-
-.DataTable .rdt_TableHeadRow {
-    background-color: #cdd8a2;
-}  
 
 .inputContainer {
     position: relative;

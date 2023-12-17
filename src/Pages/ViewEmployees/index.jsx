@@ -67,13 +67,14 @@ function ViewEmployees() {
 
   const noDataComponent = (
     <div>
-      <p>No data available in table</p>
+      <p>No data available in this list</p>
     </div>
   );
 
   return (
     <div className={styles.tableContainer}>
-       <div className={styles.inputContainer}>
+      <h1>View current employees</h1>
+      <div className={styles.inputContainer}>
         <input
           type="text"
           placeholder="Search..."
@@ -89,9 +90,20 @@ function ViewEmployees() {
         noHeader
         noDataComponent={noDataComponent}
         pagination
+        responsive
         sortActive
         persistTableHead
+        highlightOnHover
         className={styles.DataTable}
+        customStyles={{ headRow: 
+          { style: 
+            { 
+              backgroundColor: '#93AD18',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '14px',
+            }
+          }}}
       />
     </div>
   );
