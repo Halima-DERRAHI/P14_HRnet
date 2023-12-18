@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEmployeeData } from '../../Components/Store/formSlice';
 import statesData from '../../Components/Data/states.json';
+import Modal from '../../Components/Modal'
+import checkIcon from '../../assets/checkmarkIcon.png'
+// import errorIcon from '../../assets/errorIcon.svg'
 import styles from './Home.module.css';
 
 function Home() {
@@ -24,6 +27,7 @@ function Home() {
   
   const [employeeData, setEmployeeData] = useState(initialEmployeeData);
   const [errors, setErrors] = useState(initialEmployeeData);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -88,6 +92,18 @@ function Home() {
       setEmployeeData(initialEmployeeData);
       setErrors(initialEmployeeData);
     }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleModalButtonClick = () => {
+    handleCloseModal(); 
   };
 
   return (
@@ -197,6 +213,28 @@ function Home() {
 
         <button type="submit">Save</button>
       </form>
+
+      <button onClick={handleOpenModal}>Open success Modal</button>
+      {isModalVisible && (
+        <Modal
+          icon={checkIcon}
+          title="Employee successfully added"
+          buttonText="OK"
+          onClose={handleCloseModal}
+          onButtonClick={handleModalButtonClick}
+        />
+      )}
+
+      {/* <button onClick={handleOpenModal}>Open error Modal</button>
+      {isModalVisible && (
+        <Modal
+          icon={errorIcon}
+          title="Employee cann't be added"
+          buttonText="Return"
+          onClose={handleCloseModal}
+          onButtonClick={handleModalButtonClick}
+        />
+      )} */}
     </div>
   );
 }
