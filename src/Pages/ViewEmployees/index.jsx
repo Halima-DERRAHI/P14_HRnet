@@ -6,9 +6,9 @@ import Data from '../../Components/Data/emplyeeData.json'
 import styles from './ViewEmployees.module.css'
 
 /**
- * Component displaying a table of employees with search and pagination.
- * @returns {JSX.Element} Employee table component with search and pagination.
- */
+* Component displaying a table of employees with search and pagination.
+* @returns {JSX.Element} Employee table component with search and pagination.
+*/
 
 function ViewEmployees() {
 
@@ -68,9 +68,9 @@ function ViewEmployees() {
   ];
 
   /**
-   * Filters the employee data based on the search text.
-   * @type {Array}
-   */
+  * Filters the employee data based on the search text.
+  * @type {Array}
+  */
 
   const filteredData = employeeData.filter((item) =>
     Object.values(item).some(
@@ -80,9 +80,9 @@ function ViewEmployees() {
   );
 
   /**
-   * Component to display when no data is available.
-   * @type {JSX.Element}
-   */
+  * Component to display when no data is available.
+  * @type {JSX.Element}
+  */
   
   const noDataComponent = (
     <div>
