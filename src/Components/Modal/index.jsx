@@ -1,26 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Modal.module.css';
 
-const Modal = ({ icon, title, buttonText, onClose, onButtonClick }) => {
-  const handleButtonClick = () => {
-    if (onButtonClick) {
-      onButtonClick();
-    }
-    onClose();
-  };
+/**
+ * Reusable modal component.
+ * @param {object} props - The properties of the modal.
+ * @param {string} props.icon - Image for the icon.
+ * @param {string} props.message - Message displayed in the modal.
+ * @param {string} props.buttonText - Text for the action button.
+ * @param {Function} props.onClose - Callback to close the modal.
+ * @param {Function} props.onButtonClick - Callback for button action.
+ * @param {string} [props.className] - CSS class to customize the modal.
+ * @returns {JSX.Element} Modal component.
+ */
+
+const Modal = ({ icon, message, buttonText, onClose, onButtonClick, className }) => {
+
+  const modalClass = className || styles.modal;
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      } else if (event.key === 'Enter') {
+        onButtonClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose, onButtonClick]);
 
   return (
     <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+      <div className={modalClass}>
         <div className={styles.modalHeader}>
-            <span className={styles.closeBtn} onClick={onClose}>&times;</span>
+          <span className={styles.closeBtn} onClick={onClose}>&times;</span>
         </div>
         <div className={styles.modalBody}>
-            <span>{title}</span>
-            {icon && <img src={icon} alt="Icon" className={styles.closeIcon} />}
+          <span>{message}</span>
+          {icon && <img src={icon} alt="Icon" className={styles.closeIcon} />}
         </div>
         <div className={styles.modalFooter}>
-            <button onClick={handleButtonClick} className={styles.modalbutton} >{buttonText}</button>
+          <button onClick={onButtonClick} autoFocus>{buttonText}</button>
         </div>
       </div>
     </div>

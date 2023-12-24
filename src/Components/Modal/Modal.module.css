@@ -11,14 +11,11 @@
     align-items: center;
 }
   
-.modal.visible {
-    display: flex;
-}
-  
 .modal {
     background-color: white;
     width: 40%;
     border-radius: 5px;
+    font-weight: bold;
     padding: 20px;
 }
   
@@ -32,7 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 24px;
+    text-align: center;
+    font-size: 18px;
 }
   
 .closeBtn {
@@ -47,4 +45,12 @@
 
 .closeIcon {
     width: 50px;
+}
+
+.errorButton {
+    background-color: red;
+}
+
+.successButton {
+    background-color: #5A6F08;
 }
