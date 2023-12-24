@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import styles from './NavBar.module.css';
 
+/**
+ * Component representing the navigation bar.
+ * @returns {JSX.Element} Navigation bar component.
+ */
+
 function NavBar() {
   return (
     <header className={styles.header}>

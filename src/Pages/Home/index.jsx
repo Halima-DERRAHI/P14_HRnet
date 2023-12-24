@@ -1,68 +1,66 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addEmployeeData } from '../../Components/Store/formSlice';
 import statesData from '../../Components/Data/states.json';
-import Modal from '../../Components/Modal'
-import checkIcon from '../../assets/checkmarkIcon.png'
-// import errorIcon from '../../assets/errorIcon.svg'
+import Modal from '../../Components/Modal';
+import checkIcon from '../../assets/checkmarkIcon.png';
+import errorIcon from '../../assets/errorIcon.svg';
 import styles from './Home.module.css';
 
-function Home() {
+/**
+ * Component for creating a new employee.
+ * @returns {JSX.Element} New employee creation component.
+ */
 
+function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialEmployeeData = {
     firstName: '',
     lastName: '',
     dateOfBirth: '',
     startDate: '',
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      zipCode: '',
-    },
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
     department: '',
   };
-  
+
   const [employeeData, setEmployeeData] = useState(initialEmployeeData);
   const [errors, setErrors] = useState(initialEmployeeData);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  /**
+   * Handles changes in input fields.
+   * @param {Object} e - Event object.
+   */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmployeeData({
-      ...employeeData,
-      [name]: value
-    });
-    setErrors({
-      ...errors,
+    setEmployeeData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
       [name]: value ? '' : `${name} is required`,
-    });
+    }));
   };
 
-  const handleAddressChange = (e) => {
-    const { name, value } = e.target;
-    setEmployeeData({
-      ...employeeData,
-      address: {
-        ...employeeData.address,
-        [name]: value
-      }
-    });
-    setErrors({
-      ...errors,
-      address: {
-        ...errors.address,
-        [name]: value ? '' : `${name} is required`,
-      },
-    });
-  };
+  /**
+   * Validates the form data.
+   * @returns {boolean} Validation result.
+   */
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors = { ...initialEmployeeData };
     let isValid = true;
-
+  
     for (const field in employeeData) {
       if (!employeeData[field]) {
         newErrors[field] = `${field} is required`;
@@ -70,40 +68,71 @@ function Home() {
       }
     }
 
-    for (const field in employeeData.address) {
-      if (!employeeData.address[field]) {
-        newErrors.address = {
-          ...newErrors.address,
-          [field]: `${field} is required`,
-        };
-        isValid = false;
-      }
-    }
-
     setErrors(newErrors);
     return isValid;
+  };  
+
+  /**
+   * Validates the dates for the employee.
+   * @returns {boolean} Validation result.
+   */
+
+  const validateDates = () => {
+    const { dateOfBirth, startDate } = employeeData;
+  
+    if (dateOfBirth && startDate) {
+      const birthDate = new Date(dateOfBirth);
+      const start = new Date(startDate);
+  
+      if (start <= birthDate) {
+        setErrors({
+          ...errors,
+          startDate: 'Start date must be later than date of birth',
+        });
+        return false;
+      }
+    }
+  
+    return true;
   };
+
+  const existingEmployees = useSelector((state) => state.form.employeeData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+    const isFormValid = validateForm();
+    const areDatesValid = validateDates();
+  
+    if (isFormValid && areDatesValid) {
 
-    if (validateForm()) {
-      dispatch(addEmployeeData(employeeData));
-      setEmployeeData(initialEmployeeData);
-      setErrors(initialEmployeeData);
+      const isEmployeeExists = existingEmployees.some((employee) =>
+        employee.firstName === employeeData.firstName &&
+        employee.lastName === employeeData.lastName
+      );
+  
+      if (isEmployeeExists) {
+        setErrorMessage('This employee already exists in the database');
+        setIsErrorModalVisible(true);
+      } else {
+        dispatch(addEmployeeData(employeeData));
+        setIsSuccessModalVisible(true);
+        setEmployeeData(initialEmployeeData);
+        setErrors(initialEmployeeData);
+      }
+    } else {
+      setIsErrorModalVisible(true);
+      if (!isFormValid) {
+        setErrorMessage('Please fill out all required fields');
+      } else if (!areDatesValid) {
+        setErrorMessage('Start date must be later than date of birth');
+      }
     }
   };
-
-  const handleOpenModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleModalButtonClick = () => {
-    handleCloseModal(); 
+  
+  const handleSuccessModalButtonClick = () => {
+    setIsSuccessModalVisible(false);
+    navigate('/view');
   };
 
   return (
@@ -153,26 +182,26 @@ function Home() {
             <input
               type="text"
               name="street"
-              value={employeeData.address.street}
-              onChange={handleAddressChange}
+              value={employeeData.street}
+              onChange={handleChange}
             />
-            {errors.address.street && <span className={styles.error}>{errors.address.street}</span>}
+            {errors.street && <span className={styles.error}>{errors.street}</span>}
 
             <label>City:</label>
             <input
               type="text"
               name="city"
-              value={employeeData.address.city}
-              onChange={handleAddressChange}
+              value={employeeData.city}
+              onChange={handleChange}
             />
-            {errors.address.city && <span className={styles.error}>{errors.address.city}</span>}
+            {errors.city && <span className={styles.error}>{errors.city}</span>}
 
             <label>State:</label>
             <select
               name="state"
               className={styles.select}
-              value={employeeData.address.state}
-              onChange={handleAddressChange}
+              value={employeeData.state}
+              onChange={handleChange}
             >
               <option value="">Select State</option>
               {statesData.map((state, index) => (
@@ -181,28 +210,28 @@ function Home() {
                 </option>
               ))}
             </select>
-            {errors.address.state && <span className={styles.error}>{errors.address.state}</span>}
+            {errors.state && <span className={styles.error}>{errors.state}</span>}
 
             <label>Zip Code:</label>
             <input
               type="text"
               name="zipCode"
-              value={employeeData.address.zipCode}
-              onChange={handleAddressChange}
+              value={employeeData.zipCode}
+              onChange={handleChange}
             />
-            {errors.address.zipCode && <span className={styles.error}>{errors.address.zipCode}</span>}
-
+            {errors.zipCode && <span className={styles.error}>{errors.zipCode}</span>}
           </div>
         </fieldset>
+
         <label>Department:</label>
         <select 
-        name="department" 
-        id="department"
-        className={styles.select}
-        value={employeeData.department}
-        onChange={handleChange}
+          name="department" 
+          id="department"
+          className={styles.select}
+          value={employeeData.department}
+          onChange={handleChange}
         >
-          <option value="">Select departement</option>
+          <option value="">Select department</option>
           <option>Sales</option>
           <option>Marketing</option>
           <option>Engineering</option>
@@ -211,30 +240,32 @@ function Home() {
         </select>
         {errors.department && <span className={styles.error}>{errors.department}</span>}
 
-        <button type="submit">Save</button>
+        <button type="submit" className={styles.formButton}>Save</button>
       </form>
 
-      <button onClick={handleOpenModal}>Open success Modal</button>
-      {isModalVisible && (
+      {/* Success Modal */}
+      {isSuccessModalVisible && (
         <Modal
           icon={checkIcon}
-          title="Employee successfully added"
+          message="Employee successfully added"
           buttonText="OK"
-          onClose={handleCloseModal}
-          onButtonClick={handleModalButtonClick}
+          onClose={() => setIsSuccessModalVisible(false)}
+          onButtonClick={handleSuccessModalButtonClick}
+          className={styles.modal}
         />
       )}
 
-      {/* <button onClick={handleOpenModal}>Open error Modal</button>
-      {isModalVisible && (
+      {/* Error Modal */}
+      {isErrorModalVisible && (
         <Modal
           icon={errorIcon}
-          title="Employee cann't be added"
+          message={errorMessage}
           buttonText="Return"
-          onClose={handleCloseModal}
-          onButtonClick={handleModalButtonClick}
+          onClose={() => setIsErrorModalVisible(false)}
+          onButtonClick={() => setIsErrorModalVisible(false)}
+          className={styles.modal}
         />
-      )} */}
+      )}
     </div>
   );
 }

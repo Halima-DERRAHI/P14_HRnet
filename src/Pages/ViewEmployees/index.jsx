@@ -1,14 +1,23 @@
 import React, {useState} from 'react';
 import DataTable from 'react-data-table-component';
 import { useSelector } from 'react-redux';
-import styles from './ViewEmployees.module.css'
 import { AiOutlineSearch } from 'react-icons/ai';
+import Data from '../../Components/Data/emplyeeData.json'
+import styles from './ViewEmployees.module.css'
+
+/**
+ * Component displaying a table of employees with search and pagination.
+ * @returns {JSX.Element} Employee table component with search and pagination.
+ */
 
 function ViewEmployees() {
 
   const [searchText, setSearchText] = useState('');
+  const useMockedData = false;
 
-  const employeeData = useSelector((state) => state.form.employeeData);
+  const useStoreData = useSelector((state) => state.form.employeeData);
+
+  const employeeData = useMockedData ? Data : useStoreData;
 
   const columns = [
     {
@@ -38,25 +47,30 @@ function ViewEmployees() {
     },
     {
       name: 'Street',
-      selector: (row) => row.address.street,
+      selector: (row) => row.street,
       sortable: true,
     },
     {
       name: 'City',
-      selector: (row) => row.address.city,
+      selector: (row) => row.city,
       sortable: true,
     },
     {
       name: 'State',
-      selector: (row) => row.address.state,
+      selector: (row) => row.state,
       sortable: true,
     },
     {
       name: 'Zip Code',
-      selector: (row) => row.address.zipCode,
+      selector: (row) => row.zipCode,
       sortable: true,
     },
   ];
+
+  /**
+   * Filters the employee data based on the search text.
+   * @type {Array}
+   */
 
   const filteredData = employeeData.filter((item) =>
     Object.values(item).some(
@@ -65,6 +79,11 @@ function ViewEmployees() {
     )
   );
 
+  /**
+   * Component to display when no data is available.
+   * @type {JSX.Element}
+   */
+  
   const noDataComponent = (
     <div>
       <p>No data available in this list</p>
@@ -73,7 +92,7 @@ function ViewEmployees() {
 
   return (
     <div className={styles.tableContainer}>
-      <h1>View current employees</h1>
+      <h1>Current employees</h1>
       <div className={styles.inputContainer}>
         <input
           type="text"
