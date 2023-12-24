@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import DataTable from 'react-data-table-component';
 import { useSelector } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
-import Data from '../../Components/Data/emplyeeData.json'
 import styles from './ViewEmployees.module.css'
 
 /**
@@ -13,11 +12,7 @@ import styles from './ViewEmployees.module.css'
 function ViewEmployees() {
 
   const [searchText, setSearchText] = useState('');
-  const useMockedData = false;
-
-  const useStoreData = useSelector((state) => state.form.employeeData);
-
-  const employeeData = useMockedData ? Data : useStoreData;
+  const employeeData = useSelector((state) => state.form.employeeData);
 
   const columns = [
     {
@@ -97,6 +92,7 @@ function ViewEmployees() {
         <input
           type="text"
           placeholder="Search..."
+          name="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className={styles.inputSearch}
