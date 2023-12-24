@@ -60,3 +60,11 @@ button:hover {
     color: red;
     font-size: 11px; 
 }
+
+.modal {
+    background-color: white;
+    width: 40%;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 20px;
+}

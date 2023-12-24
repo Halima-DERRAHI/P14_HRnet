@@ -33,7 +33,7 @@
 
 .linksContainer {
     color: white;
-    margin: auto 50px;
+    margin: auto 10px;
     display: flex;
     flex-direction: column;
 }
@@ -48,3 +48,28 @@
 .icon {
     margin-right: 15px;
 }
+
+@media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logoContainer {
+      margin-bottom: 10px;
+    }
+  
+    .title {
+      margin-bottom: 10px; 
+    }
+  
+    .linksContainer {
+      flex-direction: row; 
+      margin: 0; 
+      text-align: center; 
+    }
+  
+    .link {
+      margin: 10px;
+    }
+}  
