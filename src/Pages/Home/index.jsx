@@ -264,6 +264,7 @@ function Home() {
           onClose={() => setIsErrorModalVisible(false)}
           onButtonClick={() => setIsErrorModalVisible(false)}
           className={styles.modal}
+          buttonColor="rgb(204 10 10)"
         />
       )}
     </div>

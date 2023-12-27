@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './Modal.module.css';
 
 /**
@@ -9,33 +9,26 @@ import styles from './Modal.module.css';
  * @param {string} props.buttonText - Text for the action button.
  * @param {Function} props.onClose - Callback to close the modal.
  * @param {Function} props.onButtonClick - Callback for button action.
+ * @param {string} [props.buttonColor] - Background color for the action button.
  * @param {string} [props.className] - CSS class to customize the modal.
  * @returns {JSX.Element} Modal component.
  */
 
-const Modal = ({ icon, message, buttonText, onClose, onButtonClick, className }) => {
+const Modal = ({ icon, message, buttonText, onClose, onButtonClick, buttonColor, className }) => {
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      onClose();
+    } else if (event.key === 'Enter') {
+      onButtonClick();
+    }
+  };
 
   const modalClass = className || styles.modal;
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        onClose();
-      } else if (event.key === 'Enter') {
-        onButtonClick();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose, onButtonClick]);
-
   return (
     <div className={styles.modalOverlay}>
-      <div className={modalClass}>
+      <div className={modalClass} onKeyDown={handleKeyDown} tabIndex={-1}>
         <div className={styles.modalHeader}>
           <span className={styles.closeBtn} onClick={onClose}>&times;</span>
         </div>
@@ -44,7 +37,9 @@ const Modal = ({ icon, message, buttonText, onClose, onButtonClick, className })
           {icon && <img src={icon} alt="Icon" className={styles.closeIcon} />}
         </div>
         <div className={styles.modalFooter}>
-          <button onClick={onButtonClick} autoFocus>{buttonText}</button>
+          <button onClick={onButtonClick} style={{ backgroundColor: buttonColor }} autoFocus>
+            {buttonText}
+          </button>
         </div>
       </div>
     </div>

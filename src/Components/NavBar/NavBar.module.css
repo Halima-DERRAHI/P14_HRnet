@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    background-color: #5A6F08;
+    background: linear-gradient(to top, #5A6F08, #6F8611);
     padding: 15px;
 }
 

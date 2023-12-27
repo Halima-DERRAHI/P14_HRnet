@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-//import Data from '../../Components/Data/emplyeeData.json'
+import Data from '../../Components/Data/employeeData.json'
 
 const initialState = {
-  employeeData: [],
+  employeeData: Data,
 };
 
 const formSlice = createSlice({
