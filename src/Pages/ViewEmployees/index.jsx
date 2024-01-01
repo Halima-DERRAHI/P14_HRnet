@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './ViewEmployees.module.css'
 
 /**
-* Component displaying a table of employees with search and pagination.
+* @description Component displaying a table of employees with search and pagination.
 * @returns {JSX.Element} Employee table component with search and pagination.
 */
 
@@ -13,6 +13,7 @@ function ViewEmployees() {
 
   const [searchText, setSearchText] = useState('');
   const employeeData = useSelector((state) => state.form.employeeData);
+  console.log(employeeData);
 
   const columns = [
     {
@@ -63,7 +64,7 @@ function ViewEmployees() {
   ];
 
   /**
-  * Filters the employee data based on the search text.
+  * @description Filters the employee data based on the search text.
   * @type {Array}
   */
 
@@ -75,7 +76,7 @@ function ViewEmployees() {
   );
 
   /**
-  * Component to display when no data is available.
+  * @description Component to display when no data is available.
   * @type {JSX.Element}
   */
   

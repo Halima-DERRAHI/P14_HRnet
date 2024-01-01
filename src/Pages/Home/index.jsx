@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addEmployeeData } from '../../Components/Store/formSlice';
 import statesData from '../../Components/Data/states.json';
-import Modal from '../../Components/Modal';
+//import Modal from '../../Components/Modal';
+import Modal from 'p14-react-modal-derrahi'
 import checkIcon from '../../assets/checkmarkIcon.png';
 import errorIcon from '../../assets/errorIcon.svg';
 import styles from './Home.module.css';
 
 /**
- * Component for creating a new employee.
+ * @description Component for creating a new employee.
  * @returns {JSX.Element} New employee creation component.
  */
 
@@ -36,7 +37,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState('');
 
   /**
-   * Handles changes in input fields.
+   * @description Handles changes in input fields.
    * @param {Object} e - Event object.
    */
 
@@ -53,7 +54,7 @@ function Home() {
   };
 
   /**
-   * Validates the form data.
+   * @description Validates the form data.
    * @returns {boolean} Validation result.
    */
 
@@ -73,7 +74,7 @@ function Home() {
   };  
 
   /**
-   * Validates the dates for the employee.
+   * @description Validates the dates for the employee.
    * @returns {boolean} Validation result.
    */
 
