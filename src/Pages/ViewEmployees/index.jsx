@@ -97,6 +97,7 @@ function ViewEmployees() {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className={styles.inputSearch}
+          aria-label="Search employees"
         />
         <AiOutlineSearch className={styles.searchIcon} />
       </div>
@@ -114,7 +115,7 @@ function ViewEmployees() {
         customStyles={{ headRow: 
           { style: 
             { 
-              backgroundColor: '#93AD18',
+              backgroundColor: '#5A6F08',
               color: 'white',
               fontWeight: 'bold',
               fontSize: '14px',

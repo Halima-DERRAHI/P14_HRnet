@@ -140,69 +140,83 @@ function Home() {
     <div className={styles.container}>
       <h1>Create a new employee</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label>First Name:</label>
+      <label htmlFor="firstName">First Name:</label>
         <input
+          id="firstName"
           type="text"
           name="firstName"
           value={employeeData.firstName}
           onChange={handleChange}
+          aria-label="First Name"
         />
         {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
 
-        <label>Last Name:</label>
+        <label htmlFor="lastName">Last Name:</label>
         <input
+          id="lastName"
           type="text"
           name="lastName"
           value={employeeData.lastName}
           onChange={handleChange}
+          aria-label="Last Name"
         />
         {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
 
-        <label>Date of Birth:</label>
+        <label htmlFor="dateOfBirth">Date of Birth:</label>
         <input
+          id="dateOfBirth"
           type="date"
           name="dateOfBirth"
           value={employeeData.dateOfBirth}
           onChange={handleChange}
+          aria-label="Date of Birth"
         />
         {errors.dateOfBirth && <span className={styles.error}>{errors.dateOfBirth}</span>}
 
-        <label>Start Date:</label>
+        <label htmlFor="startDate">Start Date:</label>
         <input
+          id="startDate"
           type="date"
           name="startDate"
           value={employeeData.startDate}
           onChange={handleChange}
+          aria-label="Start Date"
         />
         {errors.startDate && <span className={styles.error}>{errors.startDate}</span>}
 
         <fieldset className={styles.addressContainer}>
           <legend>Address</legend>
           <div>
-            <label>Street:</label>
+            <label htmlFor="street">Street:</label>
             <input
+              id="street"
               type="text"
               name="street"
               value={employeeData.street}
               onChange={handleChange}
+              aria-label="Street"
             />
             {errors.street && <span className={styles.error}>{errors.street}</span>}
 
-            <label>City:</label>
+            <label htmlFor="city">City:</label>
             <input
+              id="city"
               type="text"
               name="city"
               value={employeeData.city}
               onChange={handleChange}
+              aria-label="City"
             />
             {errors.city && <span className={styles.error}>{errors.city}</span>}
 
-            <label>State:</label>
+            <label htmlFor="state">State:</label>
             <select
+              id="state"
               name="state"
               className={styles.select}
               value={employeeData.state}
               onChange={handleChange}
+              aria-label="State"
             >
               <option value="">Select State</option>
               {statesData.map((state, index) => (
@@ -213,24 +227,27 @@ function Home() {
             </select>
             {errors.state && <span className={styles.error}>{errors.state}</span>}
 
-            <label>Zip Code:</label>
+            <label htmlFor="zipCode">Zip Code:</label>
             <input
+              id="zipCode"
               type="text"
               name="zipCode"
               value={employeeData.zipCode}
               onChange={handleChange}
+              aria-label="Zip Code"
             />
             {errors.zipCode && <span className={styles.error}>{errors.zipCode}</span>}
           </div>
         </fieldset>
 
-        <label>Department:</label>
+        <label htmlFor="department">Department:</label>
         <select 
-          name="department" 
           id="department"
+          name="department" 
           className={styles.select}
           value={employeeData.department}
           onChange={handleChange}
+          aria-label="Department"
         >
           <option value="">Select department</option>
           <option>Sales</option>
