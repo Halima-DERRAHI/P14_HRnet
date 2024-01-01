@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addEmployeeData } from '../../Components/Store/formSlice';
 import statesData from '../../Components/Data/states.json';
-//import Modal from '../../Components/Modal';
 import Modal from 'p14-react-modal-derrahi'
 import checkIcon from '../../assets/checkmarkIcon.png';
 import errorIcon from '../../assets/errorIcon.svg';
@@ -167,6 +166,7 @@ function Home() {
           id="dateOfBirth"
           type="date"
           name="dateOfBirth"
+          max="2006-01-31"
           value={employeeData.dateOfBirth}
           onChange={handleChange}
           aria-label="Date of Birth"
@@ -269,7 +269,6 @@ function Home() {
           buttonText="OK"
           onClose={() => setIsSuccessModalVisible(false)}
           onButtonClick={handleSuccessModalButtonClick}
-          className={styles.modal}
         />
       )}
 
@@ -281,7 +280,6 @@ function Home() {
           buttonText="Return"
           onClose={() => setIsErrorModalVisible(false)}
           onButtonClick={() => setIsErrorModalVisible(false)}
-          className={styles.modal}
           buttonColor="rgb(204 10 10)"
         />
       )}

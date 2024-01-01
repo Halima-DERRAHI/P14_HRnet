@@ -47,11 +47,6 @@ button:hover {
     margin-bottom: 20px;
     background-color: #f0f3e5;
 }
-  
-/* .addressLabel {
-    font-weight: bold;
-    margin-bottom: 5px;
-} */
 
 .select {
     width: 99%;
@@ -60,12 +55,4 @@ button:hover {
 .error {
     color: red;
     font-size: 11px; 
-}
-
-.modal {
-    background-color: white;
-    width: 40%;
-    border-radius: 5px;
-    font-weight: bold;
-    padding: 20px;
 }
