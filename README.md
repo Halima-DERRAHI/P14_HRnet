@@ -1,6 +1,8 @@
 # P14_HRnet Conversion Project
 
-![HRnet Application Screenshot](https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/HRnet.png)
+<p align="center">
+  <img src="https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/HRnet.png" alt="HRnet Application Screenshot" />
+</p>
 
 ## Overview
 This repository contains the code for the conversion of HRnet, an internal employee management application, from jQuery to React. The goal is to improve performance, stability, and maintainability by replacing jQuery plugins with React components.
