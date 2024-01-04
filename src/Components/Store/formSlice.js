@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Data from '../../Components/Data/employeeData.json'
 
+const useData = false;
+
 const initialState = {
-  employeeData: Data,
+  employeeData: useData ? Data : [],
 };
 
 const formSlice = createSlice({
@@ -10,7 +12,8 @@ const formSlice = createSlice({
   initialState,
   reducers: {
     addEmployeeData: (state, action) => {
-      state.employeeData.push(action.payload);
+      const newData = action.payload;
+      state.employeeData = [...state.employeeData, newData];
     },
   },
 });

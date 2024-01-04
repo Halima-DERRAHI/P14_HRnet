@@ -56,3 +56,9 @@ button:hover {
     color: red;
     font-size: 11px; 
 }
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 24px;
+    }
+}

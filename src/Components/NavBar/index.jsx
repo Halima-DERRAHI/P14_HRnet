@@ -8,7 +8,8 @@ import styles from './NavBar.module.css';
  * @returns {JSX.Element} Navigation bar component.
  */
 
-function NavBar() {
+export default function NavBar() {
+  
   return (
     <header className={styles.header}>
         <div className={styles.logoContainer}>
@@ -29,5 +30,3 @@ function NavBar() {
     </header>
   );
 }
-
-export default NavBar;

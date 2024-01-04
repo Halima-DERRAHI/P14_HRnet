@@ -138,7 +138,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>Create a new employee</h1>
+      <h1 className={styles.title}>Create a new employee</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="firstName">First Name:</label>
         <input
