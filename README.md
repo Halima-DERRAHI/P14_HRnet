@@ -20,9 +20,14 @@ This repository contains the code for the conversion of HRnet, an internal emplo
 To run the HRnet React application:
 1. Clone this repository.
 2. Navigate to `P14_HRnet/`.
-3. Install dependencies with `npm install`.
-4. Start the development server with `npm start`.
-
+3. Install dependencies with :
+```bash
+npm install
+```
+4. Start the development server with :
+```bash
+npm start
+```
 ## Modal Plugin Conversion (In Separate Repository)
 ### Tasks Completed
 - Converted the modal plugin jQuery code to a React component.
