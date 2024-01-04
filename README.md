@@ -1,6 +1,5 @@
 # P14_HRnet Conversion Project
 
-## Application Screenshot
 ![HRnet Application Screenshot](https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/HRnet.png)
 
 ## Overview
