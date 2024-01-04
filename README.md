@@ -7,6 +7,7 @@
 ## Overview
 This repository contains the code for the conversion of HRnet, an internal employee management application, from jQuery to React. The goal is to improve performance, stability, and maintainability by replacing jQuery plugins with React components.
 
+- - -
 ## HRnet Conversion
 - - -
 ### Tasks Completed
