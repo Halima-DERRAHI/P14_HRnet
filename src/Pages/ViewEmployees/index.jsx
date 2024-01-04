@@ -9,11 +9,10 @@ import styles from './ViewEmployees.module.css'
 * @returns {JSX.Element} Employee table component with search and pagination.
 */
 
-function ViewEmployees() {
+export default function ViewEmployees() {
 
   const [searchText, setSearchText] = useState('');
   const employeeData = useSelector((state) => state.form.employeeData);
-  console.log(employeeData);
 
   const columns = [
     {
@@ -125,5 +124,3 @@ function ViewEmployees() {
     </div>
   );
 }
-
-export default ViewEmployees;

@@ -13,7 +13,8 @@ import styles from './Home.module.css';
  * @returns {JSX.Element} New employee creation component.
  */
 
-function Home() {
+export default function Home() {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -286,5 +287,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
