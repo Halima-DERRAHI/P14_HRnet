@@ -259,7 +259,7 @@ export default function Home() {
         </select>
         {errors.department && <span className={styles.error}>{errors.department}</span>}
 
-        <button type="submit" className={styles.formButton}>Save</button>
+        <button type="submit" className={styles.formButton} aria-label="Save">Save</button>
       </form>
 
       {/* Success Modal */}
