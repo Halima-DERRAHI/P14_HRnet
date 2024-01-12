@@ -120,6 +120,8 @@ export default function ViewEmployees() {
               fontSize: '14px',
             }
           }}}
+        aria-label="Table of current employees"
+        aria-describedby="Table of current employees"
       />
     </div>
   );

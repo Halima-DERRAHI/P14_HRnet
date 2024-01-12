@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Data from '../../Components/Data/employeeData.json'
 
-const useData = false;
+const useData = true;
 
 const initialState = {
   employeeData: useData ? Data : [],
