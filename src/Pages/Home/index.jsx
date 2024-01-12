@@ -216,9 +216,8 @@ export default function Home() {
             />
             {errors.city && <span className={styles.error}>{errors.city}</span>}
 
-            <label htmlFor="state">State:</label>
+            <label>State:</label>
             <Dropdown
-              id="state"
               options={statesData.map((state) => ({ value: state.abbreviation, label: state.name }))}
               value={employeeData.state}
               onChange={(selected) => handleChange({ target: { name: 'state', value: selected.value } })}
@@ -240,9 +239,8 @@ export default function Home() {
           </div>
         </fieldset>
 
-        <label htmlFor="department">Department:</label>
+        <label>Department:</label>
         <Dropdown
-          id="department"
           options={[
             { value: 'Sales', label: 'Sales' },
             { value: 'Marketing', label: 'Marketing' },
