@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addEmployeeData } from '../../Components/Store/formSlice';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import statesData from '../../Components/Data/states.json';
 import Modal from 'p14-react-modal-derrahi'
 import checkIcon from '../../assets/checkmarkIcon.png';
@@ -215,21 +217,13 @@ export default function Home() {
             {errors.city && <span className={styles.error}>{errors.city}</span>}
 
             <label htmlFor="state">State:</label>
-            <select
+            <Dropdown
               id="state"
-              name="state"
-              className={styles.select}
+              options={statesData.map((state) => ({ value: state.abbreviation, label: state.name }))}
               value={employeeData.state}
-              onChange={handleChange}
-              aria-label="State"
-            >
-              <option value="">Select State</option>
-              {statesData.map((state, index) => (
-                <option key={index} value={state.abbreviation}>
-                  {state.name}
-                </option>
-              ))}
-            </select>
+              onChange={(selected) => handleChange({ target: { name: 'state', value: selected.value } })}
+              placeholder="Select State"
+            />
             {errors.state && <span className={styles.error}>{errors.state}</span>}
 
             <label htmlFor="zipCode">Zip Code:</label>
@@ -247,21 +241,19 @@ export default function Home() {
         </fieldset>
 
         <label htmlFor="department">Department:</label>
-        <select 
+        <Dropdown
           id="department"
-          name="department" 
-          className={styles.select}
+          options={[
+            { value: 'Sales', label: 'Sales' },
+            { value: 'Marketing', label: 'Marketing' },
+            { value: 'Engineering', label: 'Engineering' },
+            { value: 'Human Resources', label: 'Human Resources' },
+            { value: 'Legal', label: 'Legal' },
+          ]}
           value={employeeData.department}
-          onChange={handleChange}
-          aria-label="Department"
-        >
-          <option value="">Select department</option>
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Legal">Legal</option>
-        </select>
+          onChange={(selected) => handleChange({ target: { name: 'department', value: selected.value } })}
+          placeholder="Select department"
+        />
         {errors.department && <span className={styles.error}>{errors.department}</span>}
 
         <button type="submit" className={styles.formButton} aria-label="Save">Save</button>
