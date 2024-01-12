@@ -145,6 +145,7 @@ export default function Home() {
           id="firstName"
           type="text"
           name="firstName"
+          maxLength={30}
           value={employeeData.firstName}
           onChange={handleChange}
           aria-label="First Name"
@@ -156,6 +157,7 @@ export default function Home() {
           id="lastName"
           type="text"
           name="lastName"
+          maxLength={30}
           value={employeeData.lastName}
           onChange={handleChange}
           aria-label="Last Name"
@@ -167,7 +169,7 @@ export default function Home() {
           id="dateOfBirth"
           type="date"
           name="dateOfBirth"
-          max="2006-01-31"
+          max="2009-01-31"
           value={employeeData.dateOfBirth}
           onChange={handleChange}
           aria-label="Date of Birth"
@@ -193,6 +195,7 @@ export default function Home() {
               id="street"
               type="text"
               name="street"
+              maxLength={30}
               value={employeeData.street}
               onChange={handleChange}
               aria-label="Street"
@@ -204,6 +207,7 @@ export default function Home() {
               id="city"
               type="text"
               name="city"
+              maxLength={30}
               value={employeeData.city}
               onChange={handleChange}
               aria-label="City"
@@ -233,6 +237,7 @@ export default function Home() {
               id="zipCode"
               type="text"
               name="zipCode"
+              maxLength={15}
               value={employeeData.zipCode}
               onChange={handleChange}
               aria-label="Zip Code"
