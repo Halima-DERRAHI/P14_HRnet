@@ -90,9 +90,10 @@ export default function ViewEmployees() {
       <h1>Current employees</h1>
       <div className={styles.inputContainer}>
         <input
+          id="search"
+          name="search"
           type="text"
           placeholder="Search..."
-          name="search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className={styles.inputSearch}

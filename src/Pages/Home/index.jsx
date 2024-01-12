@@ -251,11 +251,11 @@ export default function Home() {
           aria-label="Department"
         >
           <option value="">Select department</option>
-          <option>Sales</option>
-          <option>Marketing</option>
-          <option>Engineering</option>
-          <option>Human Resources</option>
-          <option>Legal</option>
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
         </select>
         {errors.department && <span className={styles.error}>{errors.department}</span>}
 
