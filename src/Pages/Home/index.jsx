@@ -101,7 +101,13 @@ export default function Home() {
 
   const existingEmployees = useSelector((state) => state.form.employeeData);
 
+  /**
+   * @description Handles form submission.
+   * @param {Object} e - Event object.
+   */
+
   const handleSubmit = (e) => {
+    
     e.preventDefault();
   
     const isFormValid = validateForm();
