@@ -50,7 +50,7 @@ export default function Home() {
       ...prevData,
       [name]: value,
     }));
-
+    
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: value ? '' : `${name} is required`,
