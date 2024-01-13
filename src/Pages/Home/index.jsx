@@ -66,29 +66,9 @@ export default function Home() {
     const newErrors = { ...initialEmployeeData };
     let isValid = true;
   
-    // Define labels corresponding to fields
-    const fieldLabels = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      dateOfBirth: 'Date of Birth',
-      startDate: 'Start Date',
-      street: 'Street',
-      city: 'City',
-      state: 'State',
-      zipCode: 'Zip Code',
-      department: 'Department',
-    };
-
     for (const field in employeeData) {
-      const value = employeeData[field];
-    
-      if (!value) {
-        newErrors[field] = `${fieldLabels[field]} is required`;
-        isValid = false;
-
-      } else if (value.length < 2) {
-
-        newErrors[field] = `${fieldLabels[field]} must have a minimum of 2 characters`;
+      if (!employeeData[field]) {
+        newErrors[field] = `${field} is required`;
         isValid = false;
       }
     }
@@ -143,11 +123,9 @@ export default function Home() {
       );
   
       if (isEmployeeExists) {
-
         setErrorMessage('This employee already exists in the database');
         setIsErrorModalVisible(true);
       } else {
-        
         dispatch(addEmployeeData(employeeData));
         setIsSuccessModalVisible(true);
         setEmployeeData(initialEmployeeData);
