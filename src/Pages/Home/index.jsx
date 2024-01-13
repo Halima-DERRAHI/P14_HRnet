@@ -81,13 +81,14 @@ export default function Home() {
 
   for (const field in employeeData) {
     const value = employeeData[field];
-
-    // Validate minimum 2 characters for all fields
-    if (value.length < 2) {
-      newErrors[field] = `${fieldLabels[field]} must have a minimum of 2 characters`;
-      isValid = false;
-    } else if (!value) {
+  
+    if (!value) {
       newErrors[field] = `${fieldLabels[field]} is required`;
+      isValid = false;
+      
+    } else if (value.length < 2) {
+
+      newErrors[field] = `${fieldLabels[field]} must have a minimum of 2 characters`;
       isValid = false;
     }
   }
