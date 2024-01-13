@@ -45,12 +45,10 @@ export default function Home() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setEmployeeData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: value ? '' : `${name} is required`,
@@ -103,13 +101,7 @@ export default function Home() {
 
   const existingEmployees = useSelector((state) => state.form.employeeData);
 
-  /**
-   * @description Handles form submission.
-   * @param {Object} e - Event object.
-   */
-
   const handleSubmit = (e) => {
-
     e.preventDefault();
   
     const isFormValid = validateForm();
@@ -133,7 +125,6 @@ export default function Home() {
       }
     } else {
       setIsErrorModalVisible(true);
-
       if (!isFormValid) {
         setErrorMessage('Please fill out all required fields');
       } else if (!areDatesValid) {
