@@ -45,10 +45,12 @@ export default function Home() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setEmployeeData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: value ? '' : `${name} is required`,
@@ -64,12 +66,31 @@ export default function Home() {
     const newErrors = { ...initialEmployeeData };
     let isValid = true;
   
-    for (const field in employeeData) {
-      if (!employeeData[field]) {
-        newErrors[field] = `${field} is required`;
-        isValid = false;
-      }
+  // Define labels corresponding to fields
+  const fieldLabels = {
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    dateOfBirth: 'Date of Birth',
+    startDate: 'Start Date',
+    street: 'Street',
+    city: 'City',
+    state: 'State',
+    zipCode: 'Zip Code',
+    department: 'Department',
+  };
+
+  for (const field in employeeData) {
+    const value = employeeData[field];
+
+    // Validate minimum 2 characters for all fields
+    if (value.length < 2) {
+      newErrors[field] = `${fieldLabels[field]} must have a minimum of 2 characters`;
+      isValid = false;
+    } else if (!value) {
+      newErrors[field] = `${fieldLabels[field]} is required`;
+      isValid = false;
     }
+  }
 
     setErrors(newErrors);
     return isValid;
@@ -101,7 +122,13 @@ export default function Home() {
 
   const existingEmployees = useSelector((state) => state.form.employeeData);
 
+  /**
+   * @description Handles form submission.
+   * @param {Object} e - Event object.
+   */
+
   const handleSubmit = (e) => {
+
     e.preventDefault();
   
     const isFormValid = validateForm();
@@ -115,9 +142,11 @@ export default function Home() {
       );
   
       if (isEmployeeExists) {
+
         setErrorMessage('This employee already exists in the database');
         setIsErrorModalVisible(true);
       } else {
+        
         dispatch(addEmployeeData(employeeData));
         setIsSuccessModalVisible(true);
         setEmployeeData(initialEmployeeData);
@@ -125,6 +154,7 @@ export default function Home() {
       }
     } else {
       setIsErrorModalVisible(true);
+
       if (!isFormValid) {
         setErrorMessage('Please fill out all required fields');
       } else if (!areDatesValid) {
