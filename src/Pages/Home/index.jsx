@@ -218,6 +218,7 @@ export default function Home() {
 
             <label>State:</label>
             <Dropdown
+              name="state"
               options={statesData.map((state) => ({ value: state.abbreviation, label: state.name }))}
               value={employeeData.state}
               onChange={(selected) => handleChange({ target: { name: 'state', value: selected.value } })}
@@ -241,6 +242,7 @@ export default function Home() {
 
         <label>Department:</label>
         <Dropdown
+          name="department"
           options={[
             { value: 'Sales', label: 'Sales' },
             { value: 'Marketing', label: 'Marketing' },
