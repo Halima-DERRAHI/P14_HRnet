@@ -47,6 +47,12 @@ Conducted Lighthouse audits for HRnet before and after the conversion.
 - [Employee List-Performance Report - HRnet (Before)](https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/performance-reports/view-jquery.pdf)
 - [Employee List-Performance Report - HRnet (After)](https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/performance-reports/view.pdf)
 
+
+<p align="center">
+  <img src="https://github.com/Halima-DERRAHI/P14_HRnet/blob/main/performance-reports/100.png" alt="Report Screenshot" />
+</p>
+
+
 ## Deployment
 
 The HRnet React application has been deployed. You can access it [here](https://p14-h-rnet-pink.vercel.app/).
