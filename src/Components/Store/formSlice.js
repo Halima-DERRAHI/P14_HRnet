@@ -13,6 +13,7 @@ const formSlice = createSlice({
   reducers: {
     addEmployeeData: (state, action) => {
       const newData = action.payload;
+      // Update the state with the new employee data
       state.employeeData = [...state.employeeData, newData];
     },
   },

@@ -43,15 +43,31 @@ export default function Home() {
    * @param {Object} e - Event object.
    */
 
+  // Define labels corresponding to fields
+  const fieldLabels = {
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    dateOfBirth: 'Date of Birth',
+    startDate: 'Start Date',
+    street: 'Street',
+    city: 'City',
+    state: 'State',
+    zipCode: 'Zip Code',
+    department: 'Department',
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setEmployeeData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+
+    // Set errors with field labels
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: value ? '' : `${name} is required`,
+      [name]: value ? '' : `${fieldLabels[name]} is required`,
     }));
   };
 
@@ -63,17 +79,19 @@ export default function Home() {
   const validateForm = () => {
     const newErrors = { ...initialEmployeeData };
     let isValid = true;
-  
+
     for (const field in employeeData) {
       if (!employeeData[field]) {
-        newErrors[field] = `${field} is required`;
+        // Set error message with field label
+        newErrors[field] = `${fieldLabels[field]} is required`;
         isValid = false;
       }
     }
 
+    // Update errors state
     setErrors(newErrors);
     return isValid;
-  };  
+  };
 
   /**
    * @description Validates the dates for the employee.
@@ -86,7 +104,8 @@ export default function Home() {
     if (dateOfBirth && startDate) {
       const birthDate = new Date(dateOfBirth);
       const start = new Date(startDate);
-  
+
+      // Check if start date is later than date of birth
       if (start <= birthDate) {
         setErrors({
           ...errors,
@@ -99,6 +118,7 @@ export default function Home() {
     return true;
   };
 
+  // Fetch existing employees from Redux state
   const existingEmployees = useSelector((state) => state.form.employeeData);
 
   /**
@@ -109,12 +129,13 @@ export default function Home() {
   const handleSubmit = (e) => {
     
     e.preventDefault();
-  
+
+    // Validate form data and date
     const isFormValid = validateForm();
     const areDatesValid = validateDates();
   
     if (isFormValid && areDatesValid) {
-
+      // Check if the employee already exists
       const isEmployeeExists = existingEmployees.some((employee) =>
         employee.firstName === employeeData.firstName &&
         employee.lastName === employeeData.lastName
@@ -124,12 +145,15 @@ export default function Home() {
         setErrorMessage('This employee already exists in the database');
         setIsErrorModalVisible(true);
       } else {
+        // Dispatch action to add new employee data to Redux store
         dispatch(addEmployeeData(employeeData));
+        // Show success modal and reset form state
         setIsSuccessModalVisible(true);
         setEmployeeData(initialEmployeeData);
         setErrors(initialEmployeeData);
       }
     } else {
+      // Show error modal with appropriate error message
       setIsErrorModalVisible(true);
       if (!isFormValid) {
         setErrorMessage('Please fill out all required fields');
@@ -139,6 +163,7 @@ export default function Home() {
     }
   };
   
+  // Handler for success modal button click
   const handleSuccessModalButtonClick = () => {
     setIsSuccessModalVisible(false);
     navigate('/view');

@@ -13,7 +13,8 @@ export default function ViewEmployees() {
 
   const [searchText, setSearchText] = useState('');
   const employeeData = useSelector((state) => state.form.employeeData);
-
+  
+  // Column configuration for the data table
   const columns = [
     {
       name: 'First Name',
